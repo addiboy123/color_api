@@ -10,7 +10,9 @@ def index():
     if request.method=='GET':
         color_list=sq.get()
         if color_list!=None:
-             return jsonify(color_list),200
+            response=jsonify(color_list)
+            response.headers.add('Access-Control-Allow-Origin', '*')
+            return response
         
         else: 
             return "Something went wrong",404
@@ -25,7 +27,9 @@ def color(id):
     if request.method=='GET':
         color=sq.get_one(id)
         if color !=None:
-             return jsonify(color),200
+             response= jsonify(color)
+             response.headers.add('Access-Control-Allow-Origin', '*')
+             return response
         else: 
             return "Something went wrong",404
         
